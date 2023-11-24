@@ -1,0 +1,288 @@
+/* General */
+
+@import "reset.css";
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+
+* {
+    font-family: Quicksand, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 1rem;
+}
+
+/* General: Header */
+
+.header-i {
+    height: 58px;
+    width: 100%;
+    background-color: #333333;
+    z-index: 1;
+}
+
+.logo-y-nav-i {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-logo-i {
+    margin-left: 10px;
+    flex: 1;
+}
+
+.header-arrows-i label {
+    font-size: 2rem;
+    margin-right: 10px;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.input-menu-i {
+    display: none;
+}
+
+.input-menu-i:checked ~ .nav-list-i {
+    transform: translateY(0);
+}
+
+.nav-list-i {
+    width: 100%;
+    top: 58px;
+    background-color: #333333;
+    position: absolute;
+    transform: translateY(-100%);
+    transition: all 500ms ease;
+    z-index: -1;
+}
+
+.nav-list-i ul {
+    margin: 10px 0;
+}
+
+.nav-list-i a {
+    padding: 10px;
+    color: #ffffff;
+    text-decoration: none;
+    display: block;
+}
+
+.nav-list-i a:hover {
+    color: orange;
+}
+
+.nav-i li {
+    float: left;
+    margin: 0 10px 0;
+}
+
+.nav-i a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.nav-i a:hover {
+    color: orange;
+}
+
+.band-i {
+    height: 8px;
+    width: 100%;
+    background-color: #399aa1;
+}
+
+/* General: Footer */
+
+.footer-i {
+    font-size: 0.8rem;
+    height: 50px;
+    width: 100%;
+    background-color: #333333;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-i a {
+    margin: 0 7.5px;
+}
+
+.fa {
+    color: #ffffff;
+}
+
+/* 2. Page: Inscripcion */
+
+.body-i {
+    font-family: Quicksand, sans-serif;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 2.1 Form */
+
+.form-i {
+    margin: 10px 15px;
+    padding: 5px 10px 10px;
+    max-width: 500px;
+    color: #333333;
+}
+
+.h2-i {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin: 18px 0;
+    color: #399aa1;
+}
+
+.label-i {
+    font-weight: 700;
+}
+
+.input-i, .select-i {
+    width: 100%;
+    margin: 5px 0 10px;
+    color: #399aa1;
+    border-radius: 5px;
+    border: 2.6px solid #399aa1;
+}
+
+.input-i:focus, .select-i:focus {
+    outline-color: orange;
+}
+
+.select-i {
+    padding: 1px 0;
+    background-color: #ffffff;
+}
+
+.p-i {
+    font-size: 0.8rem;
+    margin: -5px 0 10px 0;
+}
+
+.nota-i {
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+}
+
+.span-i {
+    color: red;
+}
+
+input[type="submit"] {
+    color: #ffffff;
+    background-color: #399aa1;
+    cursor: pointer;
+}
+
+/* Responsive design */
+
+@media (min-width: 768px) {
+    html {
+        font-size: 1.25rem;
+    }
+
+    .header-i {
+        min-height: 80px;
+    }
+
+    .logo-y-nav-i, .footer-i {
+        min-height: 70px;
+    }
+
+    .band-i {
+        height: 10px;
+    }
+
+    .form-i {
+        max-width: 600px;
+    }
+}    
+
+@media (min-width: 1024px) {
+    .body-i {
+        justify-content: center;
+    }
+
+    .header-i {
+        position: fixed;
+        top: 0;
+    }
+
+    .band-i {
+        position: fixed;
+        top: 70px;
+    }
+
+    .form-i {
+        margin: 85px 0 15px;
+        padding: 5px 10px 18px;
+        min-width: 1000px;
+        max-width: 1280px;
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    .div-i {
+        width: 50%;
+        margin: 0 40px;
+    }
+
+    .input-i {
+        padding: 5px 2.5px;
+    }
+
+    .select-i {
+        padding: 6px 0;
+    }
+
+    .container-nota-i {
+        height: 327px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .container-nota-i > p {
+        margin-bottom: 30px;
+    }
+}
+
+@media ((min-width: 1024px) and (min-height: 912px)) or (min-height: 1181px) {
+    .body-i {
+        min-height: 100vh;
+    }
+
+    .form-i {
+        margin: 0;
+    }
+
+    .footer-i {
+        position: fixed;
+        bottom: 0;
+    }
+}
+
+/* Clases para validar */
+
+.input-error {
+    border-color: red;
+}
+
+input::placeholder {
+    color: red;
+}
+
+.select-error {
+    color: red;
+    border-color: red;
+}
