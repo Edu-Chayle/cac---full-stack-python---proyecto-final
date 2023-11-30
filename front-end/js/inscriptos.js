@@ -22,7 +22,6 @@ cobertura:"",
 nomcontacto:"",
 telcontacto:0,
 distancia:"",
-imagen:"",
 }
 },
 methods: {
@@ -63,8 +62,7 @@ let producto = {
     cobertura:this.cobertura,
     nomcontacto: this.nomcontacto,
     telcontacto: this.telcontacto,
-    distancia: this.distancia,
-    imagen:this.imagen
+    distancia: this.distancia
 }
 var options = {
 body:JSON.stringify(producto),
