@@ -18,31 +18,62 @@ crossorigin="anonymous">
 <main>
 <div class="container" id="app">
 <form style= "background-color: darkcyan;">
-<h1>Alta de Producto</h1>
+<h1>Alta de Inscripto</h1> </form>
 <div class="mb-3">
-<label for="nombre">Nombre</label>
-<input type="text" name="nombre" id="nombre" v-model="nombre">
-</div></div>
-<div class="mb-3">
-<label for="precio">Precio</label>
-<input type="number" name="precio" id="precio" v-model="precio">
-</form>
-</div>
-
-<div class="mb-3">
-<label for="stock">Stock</label>
-<input type="number" name="stock" id="stock" v-model="stock">
-</div>
-<div class="mb-3">
-<label for="imagen">Imagen</label>
-<input type="text" name="imagen" id="imagen" v-model="imagen">
-<img width="100" :src="imagen" alt="">
-</div>
-<button type="button" class="btn btn-success"
-
-v-on:click="grabar()">Grabar</button>
-</form>
-</div>
+    <label for="nombre">Nombre</label>
+    <input type="text" name="nombre" id="nombre" v-model="nombre">
+    </div>
+    <div class="mb-3">
+    <label for="apellido">Apellido</label>
+    <input type="text" name="apellido" id="apellido" v-model="apellido">
+    </div>
+    <div class="mb-3">
+    <label for="edad">Edad</label>
+    <input type="number" name="edad" id="edad" v-model="edad">
+    </div>
+    <div class="mb-3">
+    <label for="genero">Genero</label>
+    <input type="text" name="genero" id="genero" v-model="genero">
+    </div>
+    <div class="mb-3">
+    <label for="nacionalidad">Nacionalidad</label>
+    <input type="text" name="nacionalidad" id="nacionalidad" v-model="nacionalidad">
+    </div>
+    <div class="mb-3">
+    <label for="tipodocumento">Tipo documento</label>
+    <input type="text" name="tipodocumento" id="tipodocumento" v-model="tipodocumento">
+    </div>
+    <div class="mb-3">
+    <label for="numdocumento">Número documento</label>
+    <input type="number" name="numdocumento" id="numdocumento" v-model="numdocumento">
+    </div>
+    <div class="mb-3">
+    <label for="telefono">Teléfono</label>
+    <input type="number" name="telefono" id="telefono" v-model="telefono">
+    </div>
+    <div class="mb-3">
+    <label for="cobertura">Cobertura médica</label>
+    <input type="text" name="cobertura" id="cobertura" v-model="cobertura">
+    </div>
+    <div class="mb-3">
+    <label for="nomcontacto">Nombre contacto</label>
+    <input type="text" name="nomcontacto" id="nomcontacto" v-model="nomcontacto">
+    </div>
+    <div class="mb-3">
+    <label for="telcontacto">Teléfono contacto</label>
+    <input type="text" name="telcontacto" id="telcontacto" v-model="telcontacto">
+    </div>
+    <div class="mb-3">
+    <label for="distancia">Distancia</label>
+    <input type="text" name="distancia" id="distancia" v-model="distancia">
+    </div>
+    <div class="mb-3">
+    <label for="imagen">Imagen</label>
+    <input type="text" name="imagen" id="imagen" v-model="imagen">
+    <img width="100" :src="imagen" alt="">
+    </div>
+<button type="button" class="btn btn-success" v-on:click="grabar()">Grabar</button>
+</form></div>
 </main>
 <footer>
 <!-- place footer here -->
