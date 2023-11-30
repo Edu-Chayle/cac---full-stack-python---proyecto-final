@@ -11,9 +11,18 @@ cargando:true,
 /*atributos para el guardar los valores del formulario */
 id:0,
 nombre:"",
+apellido:"",
+edad:0,
+genero:"",
+nacionalidad:"",
+tipodocumento:"",
+numdocumento:0,
+telefono:0,
+cobertura:"",
+nomcontacto:"",
+telcontacto:0,
+distancia:"",
 imagen:"",
-stock:0,
-precio:0,
 }
 },
 methods: {
@@ -43,10 +52,19 @@ location.reload();
 },
 grabar(){
 let producto = {
-nombre:this.nombre,
-precio: this.precio,
-stock: this.stock,
-imagen:this.imagen
+    nombre:this.nombre,
+    apellido: this.apellido,
+    edad: this.edad,
+    genero:this.genero,
+    nacionalidad:this.nacionalidad,
+    tipodocumento: this.tipodocumento,
+    numdocumento: this.numdocumento,
+    telefono:this.telefono,
+    cobertura:this.cobertura,
+    nomcontacto: this.nomcontacto,
+    telcontacto: this.telcontacto,
+    distancia: this.distancia,
+    imagen:this.imagen
 }
 var options = {
 body:JSON.stringify(producto),
