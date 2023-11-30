@@ -22,9 +22,18 @@ fetch(url)
 console.log(data)
 this.id=data.id
 this.nombre = data.nombre;
+this.apellido=data.apellido;
+this.edad=data.edad;
+this.genero=data.genero;
+this.nacionalidad=data.nacionalidad;
+this.tipodocumento=data.tipodocumento;
+this.numdocumento=data.numdocumento;
+this.telefono=data.telefono;
+this.cobertura=data.cobertura;
+this.nomcontacto=data.nomcontacto;
+this.telcontacto=data.telcontacto;
+this.distancia=data.distancia;
 this.imagen=data.imagen
-this.stock=data.stock
-this.precio=data.precio
 })
 .catch(err => {
 console.error(err);
@@ -34,8 +43,17 @@ this.error=true
 modificar() {
 let producto = {
 nombre:this.nombre,
-precio: this.precio,
-stock: this.stock,
+apellido: this.apellido,
+edad: this.edad,
+genero:this.genero,
+nacionalidad:this.nacionalidad,
+tipodocumento: this.tipodocumento,
+numdocumento: this.numdocumento,
+telefono:this.telefono,
+cobertura:this.cobertura,
+nomcontacto: this.nomcontacto,
+telcontacto: this.telcontacto,
+distancia: this.distancia,
 imagen:this.imagen
 }
 var options = {
