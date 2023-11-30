@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-<title>Title</title>
+<title>Inscriptos</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -43,18 +43,23 @@ crossorigin="anonymous">
     <th scope="col">Nombre contacto</th>
     <th scope="col">Teléfono contacto</th>
     <th scope="col">Distancia</th>
-    <th scope="col">Acciones</th>
     </tr>
     </thead>
     <tbody>
     <tr class="" v-for="producto in productos">
     <td scope="row">{{producto.id}}</td>
     <td>{{producto.nombre}}</td>
-    <td>{{producto.precio}}</td>
-    <td>{{producto.stock}}</td>
-    <td>
-    <img width="60" :src="producto.imagen" :alt="producto.nombre">
-    </td>
+    <td>{{producto.apellido}}</td>
+    <td>{{producto.edad}}</td>
+    <td>{{producto.genero}}</td>
+    <td>{{producto.nacionalidad}}</td>
+    <td>{{producto.tipodocumento}}</td>
+    <td>{{producto.numdocumento}}</td>
+    <td>{{producto.telefono}}</td>
+    <td>{{producto.cobertura}}</td>
+    <td>{{producto.nomcontacto}}</td>
+    <td>{{producto.telcontacto}}</td>
+    <td>{{producto.distancia}}</td>
     <td>
     <a class="btn btn-primary" :href="'producto_update.html?id='+ producto.id" >Editar</a>
     <button type="button" class="btn btn-danger" v-on:click="eliminar(producto.id)" >Eliminar</button>
