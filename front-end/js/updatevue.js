@@ -15,7 +15,7 @@ return {
     nombreContacto:"",
     telefonoContacto:"",
     distancia:"",
-url:'http://127.0.0.1:5000/inscriptos/'+numeroDocumento,
+url:'https://educhayle.pythonanywhere.com/inscriptos/'+numeroDocumento,
 }
 },
 methods: {

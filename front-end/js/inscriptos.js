@@ -3,7 +3,7 @@ createApp({
 data() {
 return {
     inscriptos:[],
-url:'http://127.0.0.1:5000/inscriptos',
+url:'https://educhayle.pythonanywhere.com/inscriptos',
 error:false,
 cargando:true,
 /*atributos para el guardar los valores del formulario */
