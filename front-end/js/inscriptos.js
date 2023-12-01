@@ -2,25 +2,22 @@ const { createApp } = Vue
 createApp({
 data() {
 return {
-productos:[],
-//url:'http://localhost:5000/productos',
-// si el backend esta corriendo local usar localhost 5000(si no lo subieron a pythonanywhere)
-url:'http://mcerda.pythonanywhere.com/productos', // si ya lo subieron a pythonanywhere
+    inscriptos:[],
+url:'http://127.0.0.1:5000/inscriptos',
 error:false,
 cargando:true,
 /*atributos para el guardar los valores del formulario */
-id:0,
 nombre:"",
 apellido:"",
-edad:0,
+edad:"",
 genero:"",
 nacionalidad:"",
-tipodocumento:"",
-numdocumento:0,
-telefono:0,
-cobertura:"",
-nomcontacto:"",
-telcontacto:0,
+tipoDocumento:"",
+numeroDocumento:"",
+telefono:"",
+coberturaMedica:"",
+nombreContacto:"",
+telefonoContacto:"",
 distancia:"",
 }
 },
@@ -30,7 +27,7 @@ fetch(url)
 
 .then(response => response.json())
 .then(data => {
-this.productos = data;
+this.inscriptos = data;
 this.cargando=false
 })
 .catch(err => {
@@ -38,8 +35,8 @@ console.error(err);
 this.error=true
 })
 },
-eliminar(producto) {
-const url = this.url+'/' + producto;
+eliminar(inscripto) {
+const url = this.url+'/' + inscripto;
 var options = {
 method: 'DELETE',
 }
@@ -50,22 +47,22 @@ location.reload();
 })
 },
 grabar(){
-let producto = {
+let inscripto = {
     nombre:this.nombre,
     apellido: this.apellido,
     edad: this.edad,
     genero:this.genero,
     nacionalidad:this.nacionalidad,
-    tipodocumento: this.tipodocumento,
-    numdocumento: this.numdocumento,
+    tipoDocumento: this.tipoDocumento,
+    numeroDocumento: this.numeroDocumento,
     telefono:this.telefono,
-    cobertura:this.cobertura,
-    nomcontacto: this.nomcontacto,
-    telcontacto: this.telcontacto,
+    coberturaMedica:this.coberturaMedica,
+    nombreContacto: this.nombreContacto,
+    telefonoContacto: this.telefonoContacto,
     distancia: this.distancia
 }
 var options = {
-body:JSON.stringify(producto),
+body:JSON.stringify(inscripto),
 method: 'POST',
 headers: { 'Content-Type': 'application/json' },
 redirect: 'follow'
@@ -73,7 +70,7 @@ redirect: 'follow'
 fetch(this.url, options)
 .then(function () {
 alert("Registro grabado")
-window.location.href = "./inscriptos.html";
+window.location.href = "./index.html";
 })
 .catch(err => {
 console.error(err);
