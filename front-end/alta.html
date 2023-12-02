@@ -15,22 +15,22 @@
 <body>
     <div id="app" class="container my-3">
         <h1>Información para Inscribirse</h1>
-        <form class="">
+        <form name="formulario" method="post" id="formulario-inscripcion">
             <div>
                 <label for="input-nombre" class="form-label">Nombre:</label>
-                <input type="text" name="nombre" v-model="nombre" class="form-control">
+                <input type="text" name="nombre" v-model="nombre" class="form-control" id="input-nombre">
             </div>
             <div>
                 <label for="input-apellido" class="form-label">Apellido:</label>
-                <input type="text" name="apellido" v-model="apellido" class="form-control">
+                <input type="text" name="apellido" v-model="apellido" class="form-control" id="input-apellido">
             </div>
             <div>
                 <label for="input-edad" class="form-label">Edad:</label>
-                <input type="text" name="edad" v-model="edad" class="form-control">
+                <input type="text" name="edad" v-model="edad" class="form-control" id="input-edad">
             </div>
             <div>
                 <label for="select-genero" class="form-label">Género:</label>
-                <select name="genero" v-model="genero" class="form-select">
+                <select name="genero" v-model="genero" class="form-select" id="select-genero">
                     <option value="" selected="">Seleccione un género</option>
                     <option value="Masculino">Masculino</option>
                     <option value="Femenino">Femenino</option>
@@ -38,7 +38,7 @@
             </div>
             <div>
                 <label for="select-nacionalidad" class="form-label">Nacionalidad:</label>
-                <select name="nacionalidad" v-model="nacionalidad" class="form-select">
+                <select name="nacionalidad" v-model="nacionalidad" class="form-select" id="select-nacionalidad">
                     <option value="" selected="">Seleccione una nacionalidad</option>
                     <option value="Afghanistan">Afghanistan</option>
                     <option value="Albania">Albania</option>
@@ -238,7 +238,7 @@
             </div>
             <div>
                 <label for="select-tipo-documento" class="form-label">Tipo de documento:</label>
-                <select name="tipoDocumento" v-model="tipoDocumento" class="form-select">
+                <select name="tipoDocumento" v-model="tipoDocumento" class="form-select" id="select-tipo-documento">
                     <option value="" selected="">Seleccione un tipo de documento</option>
                     <option value="PAS">PAS</option>
                     <option value="DNI">DNI</option>
@@ -246,31 +246,31 @@
             </div>
             <div>
                 <label for="input-numero-documento" class="form-label">Número de documento:</label>
-                <input type="text" name="numeroDocumento" v-model="numeroDocumento" class="form-control">
+                <input type="text" name="numeroDocumento" v-model="numeroDocumento" class="form-control" id="input-numero-documento">
             </div>
             <div>
                 <label for="input-telefono" class="form-label">Teléfono: </label>
-                <input type="text" name="telefono" v-model="telefono" class="form-control">
+                <input type="text" name="telefono" v-model="telefono" class="form-control" id="input-telefono">
                 <p>Número de celular: Sin 0 el código de área y sin 15 el número.</p>
             </div>
             <div>
                 <label for="input-cobertura-medica" class="form-label">Cobertura médica:</label>
-                <input type="text" name="coberturaMedica" v-model="coberturaMedica" class="form-control">
+                <input type="text" name="coberturaMedica" v-model="coberturaMedica" class="form-control" id="input-cobertura-medica">
             </div>
             <h2>Contacto de emergencia</h2>
             <div>
                 <label for="input-nombre-contacto" class="form-label">Nombre del contacto:</label>
-                <input type="text" name="nombreContacto" v-model="nombreContacto" class="form-control">
+                <input type="text" name="nombreContacto" v-model="nombreContacto" class="form-control" id="input-nombre-contacto">
             </div>
             <div>
                 <label for="input-telefono-contacto" class="form-label">Teléfono del contacto:</label>
-                <input type="text" name="telefonoContacto" v-model="telefonoContacto" class="form-control">
+                <input type="text" name="telefonoContacto" v-model="telefonoContacto" class="form-control" id="input-telefono-contacto">
                 <p>Número de celular: Sin 0 el código de área y sin 15 el número.</p>
             </div>
             <h2>Inscripción</h2>
             <div>
                 <label for="input-distancia" class="form-label">Distancia:</label>
-                <select name="distancia" v-model="distancia"  class="form-select">
+                <select name="distancia" v-model="distancia"  class="form-select" id="input-distancia">
                     <option value="" selected="">Seleccione una distancia</option>
                     <option value="D1">Distancia 1: 5 km - $5000</option>
                     <option value="D2">Distancia 2: 10 km - $10000</option>
@@ -278,7 +278,7 @@
                 </select>
             </div>
             <div>
-                <button type="button" v-on:click="grabar()" class="btn btn-primary">Enviar</button>
+                <button type="button" v-on:click="grabar()" class="btn btn-primary m-1">Enviar</button>
             </div>            
         </form>
     </div>
@@ -286,5 +286,6 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="js/headerYFooter.js"></script>
     <script src="js/inscriptos.js"></script>
+    <script src="js/validacionInscripcion.js"></script>
 </body>
 </html>
