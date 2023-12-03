@@ -89,3 +89,43 @@ def update_inscripto(numeroDocumento):
     db.session.commit()
 
     return inscriptoSchema.jsonify(inscriptoEncontrado)
+
+class KitSchema(ma.Schema):
+    class Meta:
+        fields = ("codigo", "genero", "talle", "costo", "stock")
+    
+kitSchema = KitSchema()
+KitsSchema = KitSchema(many = True)
+
+@app.route("/kits",methods = ['GET'])
+def getKits():
+    allKits = Kit.query.all()
+    result = KitsSchema.dump(allKits)
+
+    return jsonify(result)
+
+@app.route("/kits",methods=['POST'])
+def createKit():
+    codigo = request.json["codigo"]
+    genero = request.json["genero"]
+    talle = request.json["talle"]
+    costo = request.json["costo"]
+    stock = request.json["stock"]
+    newKit = Kit(codigo,genero,talle,costo,stock)
+
+    db.session.add(newKit)
+    db.session.commit()
+
+    return kitSchema.jsonify(newKit)
+
+@app.route("/kits/<codigo>",methods =['DELETE'])
+def deleteKit(codigo):
+    kitEsta = Kit.query.get(codigo)
+
+    if not kitEsta:
+        return jsonify({"message": "No se encontró"}), 404
+    
+    db.session.delete(kitEsta)
+    db.session.commit()
+
+    return kitSchema.jsonify(kitEsta)
