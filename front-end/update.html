@@ -14,18 +14,6 @@
 <header id="header"></header>
 <body>
     <div id="app" class="container my-3">
-        <div class="row">
-            <div class="col">
-                <h3>Página para Actualizar Informacion</h3>
-                <form name="formulario-buscar" method="post" id="formulario-buscar">
-                    <label>Ingrese su Número de Documento</label>
-                    <input type="number" name="numeroDocumento" v-model="numeroDocumento" class="form-control"
-                        id="input-numero-documento" required>
-                    <button type="submit" class="btn btn-primary m-2" v-on:click="Buscar()">Buscar</button>
-                    <button type="reset" class="btn btn-secondary m-2">Limpiar</button>
-                </form>
-            </div>
-            <div class="col">
                 <h3>Información Actual:</h3>
                 <form name="formulario" method="post" id="formulario-inscripcion">
                     <div>
@@ -300,9 +288,6 @@
                         <button type="reset" class="btn btn-secondary m-2">Limpiar</button>
                     </div>
                 </form>
-            </div>
-        </div>
-    </div>
     </div>
     <footer id="footer" class="container-fluid text-center d-flex flex-column justify-content-center"></footer>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
