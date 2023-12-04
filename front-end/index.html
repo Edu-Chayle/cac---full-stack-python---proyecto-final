@@ -11,13 +11,13 @@ integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+f
 crossorigin="anonymous">
 <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <header id="header"></header>
-<main>
-<div id="app" class="container my-3">
-<h1>Inscripciones</h1>
+<main class="flex-grow-1">
+<div id="app" class="container-fluid my-3">
+<h1 class="mb-0">Inscripciones</h1>
 <br>
-<a class="btn btn-primary" href="alta.html">Nuevo</a>
+<a class="btn btn-warning" href="alta.html">Agregar nuevo inscripto</a>
 <br><br>
 <div v-if="error">
     <p>Lo sentimos , ........</p>
@@ -28,10 +28,11 @@ crossorigin="anonymous">
     <p>Cargando .....</p>
     </section>
     <section v-else>
-    <div class="table-responsive-xxl">
-    <table class="table table-bordered table-hover">
-    <thead>
+    <div class="table-responsive">
+    <table class="table table-bordered table-hover custom-table">
+    <thead class="text-center thead">
     <tr>
+        <th scope="col">#</th>
     <th scope="col">Nombre</th>
     <th scope="col">Apellido</th>
     <th scope="col">Edad</th>
@@ -47,9 +48,10 @@ crossorigin="anonymous">
     <th scope="col">Acción</th>
     </tr>
     </thead>
-    <tbody>
-    <tr class="" v-for="inscripto in inscriptos">
-    <td scope="row">{{inscripto.nombre}}</td>
+    <tbody class="text-center">
+        <tr v-for="(inscripto, index) in inscriptos" :key="inscripto.numeroDocumento">
+            <td scope="row">{{index + 1}}</td>
+    <td>{{inscripto.nombre}}</td>
     <td>{{inscripto.apellido}}</td>
     <td>{{inscripto.edad}}</td>
     <td>{{inscripto.genero}}</td>
@@ -62,8 +64,8 @@ crossorigin="anonymous">
     <td>{{inscripto.telefonoContacto}}</td>
     <td>{{inscripto.distancia}}</td>
     <td>
-    <a class="btn btn-primary" :href="'update.html?numeroDocumento='+ inscripto.numeroDocumento" >Editar</a>
-    <button type="button" class="btn btn-danger" v-on:click="eliminar(inscripto.numeroDocumento)" >Eliminar</button>
+        <a class="custom-icon-edit me-3" :href="'update.html?numeroDocumento=' + inscripto.numeroDocumento" data-tip="edit"><i class="fa fa-edit"></i></a>
+        <a class="custom-icon-delete" :href="'javascript:void(0);'" data-tip="delete" @click="eliminar(inscripto.numeroDocumento)"><i class="fa fa-trash"></i></a>
     </td>
     </tr>
     </tbody>
@@ -74,14 +76,8 @@ crossorigin="anonymous">
     </div>
     </main>
     <footer id="footer" class="container-fluid text-center d-flex flex-column justify-content-center"></footer>
-        <script>
-        <!--Link de Bootstrap-->
-        src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-        crossorigin="anonymous"</script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
-        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script><!--Link de VUE-->
         <script src="js/headerYFooter.js"></script>
         <script src="js/inscriptos.js"></script>
