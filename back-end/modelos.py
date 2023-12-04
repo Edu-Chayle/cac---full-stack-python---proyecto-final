@@ -125,5 +125,59 @@ class Inscripto(db.Model):
     def distancia(self, distancia):
         self.__distancia = distancia
 
+class Kit(db.Model):
+    __codigo = db.Column(db.String(4),primary_key = True,name = "Codigo")
+    __genero = db.Column(db.String(9), name = "Genero")
+    __talle = db.Column(db.String(4), name = "Talle")
+    __costo = db.Column(db.Integer,name = "Costo")
+    __stock = db.Column(db.Integer,name = "Stock")
+
+    def __init__(self,cod,gene,tall,cost,stoc):
+        self.__codigo = cod
+        self.__genero = gene
+        self.__talle = tall
+        self.__costo = cost
+        self.__stock = stoc
+    
+    @property
+    def codigo(self):
+        return self.__codigo
+    
+    @codigo.setter
+    def codigo(self,cod):
+        self.__codigo = cod
+    
+    @property
+    def genero(self):
+        return self.__genero
+    
+    @genero.setter
+    def genero(self,gene):
+        self.__genero = gene
+    
+    @property
+    def talle(self):
+        return self.__talle
+    
+    @talle.setter
+    def talle(self,tall):
+        self.__talle = tall
+    
+    @property
+    def costo(self):
+        return self.__costo
+    
+    @costo.setter
+    def costo(self,cost):
+        self.__costo = cost
+    
+    @property
+    def stock(self):
+        return self.__stock
+    
+    @stock.setter
+    def stock(self,stoc):
+        self.__stock = stoc
+
 with app.app_context():
     db.create_all()
