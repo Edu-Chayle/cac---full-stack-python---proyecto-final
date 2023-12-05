@@ -104,8 +104,22 @@ def getKits():
 
     return jsonify(result)
 
+@app.route("/kits/<codigo>",methods=['GET'])
+def GetKit(codigo):
+    Buscarkit = Kit.query.get(codigo)
+
+    if Buscarkit:
+        return jsonify(Buscarkit)
+    else:
+        return jsonify({"message": "No se encuentra"}),404
+
 @app.route("/kits",methods=['POST'])
 def createKit():
+    Buscarkit = Kit.query.get(request.json["codigo"])
+
+    if Buscarkit:
+        return jsonify({"message": "No se pudo guardar el kit porque ya existe"}), 409 
+        
     codigo = request.json["codigo"]
     genero = request.json["genero"]
     talle = request.json["talle"]
@@ -129,3 +143,20 @@ def deleteKit(codigo):
     db.session.commit()
 
     return kitSchema.jsonify(kitEsta)
+
+@app.route("/kits/<codigo>",methods=['PUT'])
+def UpdateKit(codigo):
+    BuscarKit = Kit.query.get(codigo)
+
+    if not BuscarKit:
+        return jsonify({"message": "No se encontró"}), 404
+    
+    kitSchema.codigo = request['codigo']
+    kitSchema.genero = request['genero']
+    kitSchema.talle = request['talle']
+    kitSchema.costo = request['costo']
+    kitSchema.stock = request['stock']
+
+    db.session.commit()
+
+    return kitSchema.jsonify(BuscarKit)
