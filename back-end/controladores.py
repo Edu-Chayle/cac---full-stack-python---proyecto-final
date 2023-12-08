@@ -4,7 +4,6 @@ from modelos import *
 
 class InscriptoSchema(ma.Schema):
     class Meta:
-
         fields = ("nombre", "apellido", "edad", "genero", "nacionalidad", "tipoDocumento", "numeroDocumento", 
                   "telefono", "coberturaMedica", "nombreContacto", "telefonoContacto", "circuito")
 
@@ -151,7 +150,7 @@ def UpdateKit(codigo):
     if not BuscarKit:
         return jsonify({"message": "No se encontró"}), 404
     
-    kitSchema.codigo = request['codigo']
+    BuscarKit.codigo = request.json['codigo']
     kitSchema.genero = request['genero']
     kitSchema.talle = request['talle']
     kitSchema.costo = request['costo']
