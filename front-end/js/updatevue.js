@@ -14,7 +14,7 @@ return {
     coberturaMedica:"",
     nombreContacto:"",
     telefonoContacto:"",
-    distancia:"",
+    circuito:"",
 url:'https://educhayle.pythonanywhere.com/inscriptos/'+numeroDocumento,
 }
 },
@@ -34,7 +34,7 @@ this.telefono=data.telefono;
 this.coberturaMedica=data.coberturaMedica;
 this.nombreContacto=data.nombreContacto;
 this.telefonoContacto=data.telefonoContacto;
-this.distancia=data.distancia;
+this.circuito=data.circuito;
 })
 .catch(err => {
 console.error(err);
@@ -54,7 +54,7 @@ modificar() {
         coberturaMedica:this.coberturaMedica,
         nombreContacto: this.nombreContacto,
         telefonoContacto: this.telefonoContacto,
-        distancia: this.distancia
+        circuito: this.circuito
 }
 var options = {
 body: JSON.stringify(inscripto),

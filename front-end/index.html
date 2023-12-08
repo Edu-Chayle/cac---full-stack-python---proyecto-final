@@ -44,7 +44,7 @@ crossorigin="anonymous">
     <th scope="col">Cobertura Médica</th>
     <th scope="col">Nombre contacto</th>
     <th scope="col">Teléfono contacto</th>
-    <th scope="col">Distancia</th>
+    <th scope="col">Circuito</th>
     <th scope="col">Acción</th>
     </tr>
     </thead>
@@ -62,7 +62,7 @@ crossorigin="anonymous">
     <td>{{inscripto.coberturaMedica}}</td>
     <td>{{inscripto.nombreContacto}}</td>
     <td>{{inscripto.telefonoContacto}}</td>
-    <td>{{inscripto.distancia}}</td>
+    <td>{{inscripto.circuito}}</td>
     <td>
         <a class="custom-icon-edit me-3" :href="'update.html?numeroDocumento=' + inscripto.numeroDocumento" data-tip="edit"><i class="fa fa-edit"></i></a>
         <a class="custom-icon-delete" :href="'javascript:void(0);'" data-tip="delete" @click="eliminar(inscripto.numeroDocumento)"><i class="fa fa-trash"></i></a>

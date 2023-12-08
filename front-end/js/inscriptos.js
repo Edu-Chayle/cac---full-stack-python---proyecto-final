@@ -18,13 +18,12 @@ telefono:"",
 coberturaMedica:"",
 nombreContacto:"",
 telefonoContacto:"",
-distancia:"",
+circuito:"",
 }
 },
 methods: {
 fetchData(url) {
 fetch(url)
-
 .then(response => response.json())
 .then(data => {
 this.inscriptos = data;
@@ -36,15 +35,24 @@ this.error=true
 })
 },
 eliminar(inscripto) {
-const url = this.url+'/' + inscripto;
-var options = {
-method: 'DELETE',
-}
-fetch(url, options)
-.then(res => res.text()) // or res.json()
-.then(res => {
-location.reload();
-})
+    const confirmacion = window.confirm('¿Está seguro de que quiere eliminar este inscripto?');
+
+    if (confirmacion) {
+        const url = this.url + '/' + inscripto;
+
+        var options = {
+            method: 'DELETE',
+        }
+
+        fetch(url, options).then(res => res.text()).then(res => {
+            location.reload();
+        })
+        .catch(err => {
+            console.error(err);
+        });
+    } else {
+        alert('Eliminación cancelada.');
+    }
 },
 grabar(){
 let inscripto = {
@@ -59,7 +67,7 @@ let inscripto = {
     coberturaMedica:this.coberturaMedica,
     nombreContacto: this.nombreContacto,
     telefonoContacto: this.telefonoContacto,
-    distancia: this.distancia
+    circuito: this.circuito
 }
 var options = {
 body:JSON.stringify(inscripto),

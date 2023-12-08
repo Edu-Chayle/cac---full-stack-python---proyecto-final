@@ -12,10 +12,10 @@ class Inscripto(db.Model):
     __coberturaMedica = db.Column(db.String(50), name = "Cobertura médica")
     __nombreContacto = db.Column(db.String(50), name = "Nombre contacto")
     __telefonoContacto = db.Column(db.String(14), name = "Teléfono contacto")
-    __distancia = db.Column(db.String(2), name = "Distancia")
+    __circuito = db.Column(db.String(2), name = "Circuito")
 
     def __init__(self, nombre, apellido, edad, genero, nacionalidad, tipoDocumento, numeroDocumento, telefono, 
-                 coberturaMedica, nombreContacto, telefonoContacto, distancia):
+                 coberturaMedica, nombreContacto, telefonoContacto, circuito):
         self.__nombre = nombre
         self.__apellido = apellido
         self.__edad = edad
@@ -27,7 +27,7 @@ class Inscripto(db.Model):
         self.__coberturaMedica = coberturaMedica
         self.__nombreContacto = nombreContacto
         self.__telefonoContacto = telefonoContacto
-        self.__distancia = distancia
+        self.__circuito = circuito
 
     @property
     def nombre(self):
@@ -118,66 +118,12 @@ class Inscripto(db.Model):
         self.__telefonoContacto = telefonoContacto
 
     @property
-    def distancia(self):
-        return self.__distancia
+    def circuito(self):
+        return self.__circuito
 
-    @distancia.setter
-    def distancia(self, distancia):
-        self.__distancia = distancia
-
-class Kit(db.Model):
-    __codigo = db.Column(db.String(4),primary_key = True,name = "Codigo")
-    __genero = db.Column(db.String(9), name = "Genero")
-    __talle = db.Column(db.String(4), name = "Talle")
-    __costo = db.Column(db.Integer,name = "Costo")
-    __stock = db.Column(db.Integer,name = "Stock")
-
-    def __init__(self,cod,gene,tall,cost,stoc):
-        self.__codigo = cod
-        self.__genero = gene
-        self.__talle = tall
-        self.__costo = cost
-        self.__stock = stoc
-    
-    @property
-    def codigo(self):
-        return self.__codigo
-    
-    @codigo.setter
-    def codigo(self,cod):
-        self.__codigo = cod
-    
-    @property
-    def genero(self):
-        return self.__genero
-    
-    @genero.setter
-    def genero(self,gene):
-        self.__genero = gene
-    
-    @property
-    def talle(self):
-        return self.__talle
-    
-    @talle.setter
-    def talle(self,tall):
-        self.__talle = tall
-    
-    @property
-    def costo(self):
-        return self.__costo
-    
-    @costo.setter
-    def costo(self,cost):
-        self.__costo = cost
-    
-    @property
-    def stock(self):
-        return self.__stock
-    
-    @stock.setter
-    def stock(self,stoc):
-        self.__stock = stoc
+    @circuito.setter
+    def circuito(self, circuito):
+        self.__circuito = circuito
 
 with app.app_context():
     db.create_all()

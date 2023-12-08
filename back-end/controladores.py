@@ -6,7 +6,7 @@ class InscriptoSchema(ma.Schema):
     class Meta:
 
         fields = ("nombre", "apellido", "edad", "genero", "nacionalidad", "tipoDocumento", "numeroDocumento", 
-                  "telefono", "coberturaMedica", "nombreContacto", "telefonoContacto", "distancia")
+                  "telefono", "coberturaMedica", "nombreContacto", "telefonoContacto", "circuito")
 
 inscriptoSchema = InscriptoSchema()
 inscriptosSchema = InscriptoSchema(many = True)
@@ -25,14 +25,14 @@ def get_inscripto(numeroDocumento):
     if inscriptoEncontrado:
         return inscriptoSchema.jsonify(inscriptoEncontrado)
     else:
-        return jsonify({"message": "No se encontró ningún inscripto con ese número de documento"}), 404
+        return jsonify({"message": "No se encontró ningún inscripto con ese número de documento."}), 404
 
 @app.route("/inscriptos/<numeroDocumento>", methods=["DELETE"])
 def delete_inscripto(numeroDocumento):
     inscriptoEncontrado = Inscripto.query.get(numeroDocumento)
 
     if not inscriptoEncontrado:
-        return jsonify({"message": "No se encontró ningún inscripto con ese número de documento"}), 404
+        return jsonify({"message": "No se encontró ningún inscripto con ese número de documento."}), 404
 
     db.session.delete(inscriptoEncontrado)
     db.session.commit()
@@ -44,7 +44,7 @@ def create_inscripto():
     inscriptoEncontrado = Inscripto.query.get(request.json["numeroDocumento"])
 
     if inscriptoEncontrado:
-        return jsonify({"message": "No se pudo guardar el inscripto porque ya existe"}), 409
+        return jsonify({"message": "No se pudo guardar el inscripto porque ya existe."}), 409
 
     nombre = request.json["nombre"]
     apellido = request.json["apellido"]
@@ -57,9 +57,9 @@ def create_inscripto():
     coberturaMedica = request.json["coberturaMedica"]
     nombreContacto = request.json["nombreContacto"]
     telefonoContacto = request.json["telefonoContacto"]
-    distancia = request.json["distancia"]
+    circuito = request.json["circuito"]
     newInscripto = Inscripto(nombre, apellido, edad, genero, nacionalidad, tipoDocumento, numeroDocumento, 
-                             telefono, coberturaMedica, nombreContacto, telefonoContacto, distancia)
+                             telefono, coberturaMedica, nombreContacto, telefonoContacto, circuito)
 
     db.session.add(newInscripto)
     db.session.commit()
@@ -71,7 +71,7 @@ def update_inscripto(numeroDocumento):
     inscriptoEncontrado = Inscripto.query.get(numeroDocumento)
 
     if not inscriptoEncontrado:
-        return jsonify({"message": "No se encontró ningún inscripto con ese número de documento"}), 404
+        return jsonify({"message": "No se encontró ningún inscripto con ese número de documento."}), 404
 
     inscriptoEncontrado.nombre = request.json["nombre"]
     inscriptoEncontrado.apellido = request.json["apellido"]
@@ -84,48 +84,8 @@ def update_inscripto(numeroDocumento):
     inscriptoEncontrado.coberturaMedica = request.json["coberturaMedica"]
     inscriptoEncontrado.nombreContacto = request.json["nombreContacto"]
     inscriptoEncontrado.telefonoContacto = request.json["telefonoContacto"]
-    inscriptoEncontrado.distancia = request.json["distancia"]
+    inscriptoEncontrado.circuito = request.json["circuito"]
 
     db.session.commit()
 
     return inscriptoSchema.jsonify(inscriptoEncontrado)
-
-class KitSchema(ma.Schema):
-    class Meta:
-        fields = ("codigo", "genero", "talle", "costo", "stock")
-    
-kitSchema = KitSchema()
-KitsSchema = KitSchema(many = True)
-
-@app.route("/kits",methods = ['GET'])
-def getKits():
-    allKits = Kit.query.all()
-    result = KitsSchema.dump(allKits)
-
-    return jsonify(result)
-
-@app.route("/kits",methods=['POST'])
-def createKit():
-    codigo = request.json["codigo"]
-    genero = request.json["genero"]
-    talle = request.json["talle"]
-    costo = request.json["costo"]
-    stock = request.json["stock"]
-    newKit = Kit(codigo,genero,talle,costo,stock)
-
-    db.session.add(newKit)
-    db.session.commit()
-
-    return kitSchema.jsonify(newKit)
-
-@app.route("/kits/<codigo>",methods =['DELETE'])
-def deleteKit(codigo):
-    kitEsta = Kit.query.get(codigo)
-
-    if not kitEsta:
-        return jsonify({"message": "No se encontró"}), 404
-    
-    db.session.delete(kitEsta)
-    db.session.commit()
-
-    return kitSchema.jsonify(kitEsta)
