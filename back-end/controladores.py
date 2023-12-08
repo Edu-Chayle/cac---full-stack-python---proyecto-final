@@ -89,3 +89,74 @@ def update_inscripto(numeroDocumento):
     db.session.commit()
 
     return inscriptoSchema.jsonify(inscriptoEncontrado)
+
+class KitSchema(ma.Schema):
+    class Meta:
+        fields = ("codigo", "genero", "talle", "costo", "stock")
+    
+kitSchema = KitSchema()
+KitsSchema = KitSchema(many = True)
+
+@app.route("/kits",methods = ['GET'])
+def getKits():
+    allKits = Kit.query.all()
+    result = KitsSchema.dump(allKits)
+
+    return jsonify(result)
+
+@app.route("/kits/<codigo>",methods=['GET'])
+def GetKit(codigo):
+    Buscarkit = Kit.query.get(codigo)
+
+    if Buscarkit:
+        return jsonify(Buscarkit)
+    else:
+        return jsonify({"message": "No se encuentra"}),404
+
+@app.route("/kits",methods=['POST'])
+def createKit():
+    Buscarkit = Kit.query.get(request.json["codigo"])
+
+    if Buscarkit:
+        return jsonify({"message": "No se pudo guardar el kit porque ya existe"}), 409 
+        
+    codigo = request.json["codigo"]
+    genero = request.json["genero"]
+    talle = request.json["talle"]
+    costo = request.json["costo"]
+    stock = request.json["stock"]
+    newKit = Kit(codigo,genero,talle,costo,stock)
+
+    db.session.add(newKit)
+    db.session.commit()
+
+    return kitSchema.jsonify(newKit)
+
+@app.route("/kits/<codigo>",methods =['DELETE'])
+def deleteKit(codigo):
+    kitEsta = Kit.query.get(codigo)
+
+    if not kitEsta:
+        return jsonify({"message": "No se encontró"}), 404
+    
+    db.session.delete(kitEsta)
+    db.session.commit()
+
+    return kitSchema.jsonify(kitEsta)
+
+@app.route("/kits/<codigo>",methods=['PUT'])
+def UpdateKit(codigo):
+    BuscarKit = Kit.query.get(codigo)
+
+    if not BuscarKit:
+        return jsonify({"message": "No se encontró"}), 404
+    
+    kitSchema.codigo = request['codigo']
+    kitSchema.genero = request['genero']
+    kitSchema.talle = request['talle']
+    kitSchema.costo = request['costo']
+    kitSchema.stock = request['stock']
+
+    db.session.commit()
+
+    return kitSchema.jsonify(BuscarKit)
