@@ -132,52 +132,52 @@ class Inscripto(db.Model):
         __costo = db.Column(db.Integer,name = "Costo")
         __stock = db.Column(db.Integer,name = "Stock")
 
-    def __init__(self,cod,gene,tall,cost,stoc):
-        self.__codigo = cod
-        self.__genero = gene
-        self.__talle = tall
-        self.__costo = cost
-        self.__stock = stoc
+def __init__(self,codigo,genero,talle,costo,stock):
+        self.__codigo = codigo
+        self.__genero = genero
+        self.__talle = talle
+        self.__costo = costo
+        self.__stock = stock
     
     @property
     def codigo(self):
         return self.__codigo
     
     @codigo.setter
-    def codigo(self,cod):
-        self.__codigo = cod
+    def codigo(self,codigo):
+        self.__codigo = codigo
     
     @property
     def genero(self):
         return self.__genero
     
     @genero.setter
-    def genero(self,gene):
-        self.__genero = gene
+    def genero(self,genero):
+        self.__genero = genero
     
     @property
     def talle(self):
         return self.__talle
     
     @talle.setter
-    def talle(self,tall):
-        self.__talle = tall
+    def talle(self,talle):
+        self.__talle = talle
     
     @property
     def costo(self):
         return self.__costo
     
     @costo.setter
-    def costo(self,cost):
-        self.__costo = cost
+    def costo(self,costo):
+        self.__costo = costo
     
     @property
     def stock(self):
         return self.__stock
     
     @stock.setter
-    def stock(self,stoc):
-        self.__stock = stoc
-
+    def stock(self,stock):
+        self.__stock = stock
+        
 with app.app_context():
     db.create_all()
