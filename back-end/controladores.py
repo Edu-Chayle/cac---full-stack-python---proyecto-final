@@ -89,6 +89,8 @@ def update_inscripto(numeroDocumento):
 
     return inscriptoSchema.jsonify(inscriptoEncontrado)
 
+## Clase Kits ##
+
 class KitSchema(ma.Schema):
     class Meta:
         fields = ("codigo", "genero", "talle", "costo", "stock")
@@ -97,65 +99,66 @@ kitSchema = KitSchema()
 KitsSchema = KitSchema(many = True)
 
 @app.route("/kits",methods = ['GET'])
-def getKits():
+def get_kits():
     allKits = Kit.query.all()
     result = KitsSchema.dump(allKits)
-
-    return jsonify(result)
+    if not result:
+        return jsonify({"message": "No se encontró ningún kit"}), 404
+    else:
+        return jsonify(result)
 
 @app.route("/kits/<codigo>",methods=['GET'])
-def GetKit(codigo):
-    Buscarkit = Kit.query.get(codigo)
+def get_kit(codigo):
+    kitEncontrado = Kit.query.get(codigo)
 
-    if Buscarkit:
-        return jsonify(Buscarkit)
+    if kitEncontrado:
+        return kitSchema.jsonify(kitEncontrado)
     else:
         return jsonify({"message": "No se encuentra"}),404
 
-@app.route("/kits",methods=['POST'])
-def createKit():
-    Buscarkit = Kit.query.get(request.json["codigo"])
+@app.route("/kits/<codigo>",methods =['DELETE'])
+def delete_kit(codigo):
+    kitEncontrado = Kit.query.get(codigo)
 
-    if Buscarkit:
-        return jsonify({"message": "No se pudo guardar el kit porque ya existe"}), 409 
-        
+    if not kitEncontrado:
+        return jsonify({"message": "No se encontró"}), 404
+    
+    db.session.delete(kitEncontrado)
+    db.session.commit()
+
+    return kitSchema.jsonify(kitEncontrado)
+
+@app.route("/kits", methods=["POST"])
+def create_kit():  
     codigo = request.json["codigo"]
     genero = request.json["genero"]
     talle = request.json["talle"]
     costo = request.json["costo"]
     stock = request.json["stock"]
-    newKit = Kit(codigo,genero,talle,costo,stock)
 
+   
+
+    newKit = Kit(codigo,genero,talle,costo,stock)
+    
     db.session.add(newKit)
     db.session.commit()
 
+    
     return kitSchema.jsonify(newKit)
 
-@app.route("/kits/<codigo>",methods =['DELETE'])
-def deleteKit(codigo):
-    kitEsta = Kit.query.get(codigo)
-
-    if not kitEsta:
-        return jsonify({"message": "No se encontró"}), 404
-    
-    db.session.delete(kitEsta)
-    db.session.commit()
-
-    return kitSchema.jsonify(kitEsta)
-
 @app.route("/kits/<codigo>",methods=['PUT'])
-def UpdateKit(codigo):
-    BuscarKit = Kit.query.get(codigo)
+def update_kit(codigo):
+    kitEncontrado = Kit.query.get(codigo)
 
-    if not BuscarKit:
+    if not kitEncontrado:
         return jsonify({"message": "No se encontró"}), 404
     
-    BuscarKit.codigo = request.json['codigo']
-    kitSchema.genero = request['genero']
-    kitSchema.talle = request['talle']
-    kitSchema.costo = request['costo']
-    kitSchema.stock = request['stock']
+    kitEncontrado.codigo = request.json['codigo']
+    kitEncontrado.genero = request.json['genero']
+    kitEncontrado.talle = request.json['talle']
+    kitEncontrado.costo = request.json['costo']
+    kitEncontrado.stock = request.json['stock']
 
     db.session.commit()
 
-    return kitSchema.jsonify(BuscarKit)
+    return kitSchema.jsonify(kitEncontrado)
